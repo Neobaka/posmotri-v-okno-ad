@@ -9,6 +9,9 @@ html {
 }
 
 .page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   inline-size: 1200px;
   block-size: 100%;
   margin: auto;
@@ -48,4 +51,422 @@ ol {
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #D9D9D9;
+}
+
+/* Шаг 1. Лейаут */
+
+/* Грид для основного контента */
+.content {
+  display: grid;
+  grid-template-columns: 711px 1fr;
+  gap: 30px;
+  align-items: end;
+  inline-size: 1140px;
+}
+
+/* Позиционирование элементов в гриде */
+.result {
+  grid-column: 1;
+}
+
+.content__details {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  block-size: 100%;
+}
+
+/* Форма поиска */
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.search-form__fieldset {
+  border: none;
+  padding: 0;
+}
+
+/* Контейнер со списком - добавляем скролл */
+.content__list-container {
+  block-size: 298px;
+  overflow-y: auto;
+}
+
+.content__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Шаг 2. Уточнение размеров */
+
+
+/* Контейнер для видео */
+.result__video-container {
+  inline-size: 711px;
+  block-size: 386px;
+  margin-block-end: 16px;
+}
+
+/* Видео занимает весь контейнер */
+.result__video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+
+/* Карточка видео */
+.content__video-card {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Миниатюра видео */
+.content__video-card-thumbnail {
+  inline-size: 194px;
+  block-size: 103px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Контейнер с описанием занимает всё доступное пространство */
+.content__video-card-description-container {
+  flex-grow: 1;
+}
+
+
+/* Шаг 3. Стили текстов */
+
+/* Заголовки полей формы */
+.search-form__fieldset-title {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  margin-block-end: 5px;
+}
+
+/* Основной заголовок */
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 75px;
+  font-weight: 700;
+  line-height: 94%;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Акцентный текст в заголовке */
+.content__accent {
+  color: #545050;
+}
+
+/* Ссылка карточки */
+.content__card-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Заголовок карточки */
+.content__video-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 100%;
+  text-transform: uppercase;
+  margin: 0 0 6px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Описание карточки */
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* Шаг 4. Стилизуем формы и их состояния */
+
+/* Скрываем элементы визуально, но оставляем доступными для скринридеров */
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Лейбл для инпута */
+.search-form__label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+}
+
+/* Текстовое поле ввода */
+.search-form__textfield {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  inline-size: 225px;
+  block-size: 27px;
+  padding: 0;
+  appearance: none;
+}
+
+/* Фокус на текстовом поле - обводка на лейбле */
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+.search-form__textfield:focus {
+  outline: none;
+}
+
+/* Список чекбоксов */
+.search-form__checkbox-list {
+  display: flex;
+  gap: 15px;
+}
+
+/* Псевдочекбокс */
+.search-form__pseudo-checkbox {
+  display: inline-block;
+  inline-size: 19px;
+  block-size: 19px;
+  border: 1px solid #fff;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Внутренний квадрат чекбокса */
+.search-form__pseudo-checkbox::after {
+  content: '';
+  position: absolute;
+  inline-size: 15px;
+  block-size: 15px;
+  background-color: #fff;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+/* Показываем внутренний квадрат когда чекбокс активен */
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
+  display: block;
+}
+
+/* Фокус на чекбоксе - обводка на лейбле */
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+/* Подчёркивание текста при наведении на лейбл */
+.search-form__label:hover .search-form__label-text {
+  text-decoration: underline;
+}
+
+/* Описание карточки */
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* Шаг 5. Стилизуем кнопки и их состояния */
+
+/* Общие стили для всех кнопок */
+.button {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+/* Кнопка "Найти" */
+.search-form__submit-button {
+  align-self: flex-end;
+  inline-size: 194px;
+  block-size: 34px;
+}
+
+/* Кнопка "Показать ещё" */
+.more-button {
+  inline-size: 100%;
+  block-size: 34px;
+}
+
+/* Состояние hover - подчёркивание текста */
+.button:hover {
+  text-decoration: underline;
+}
+
+/* Состояние active - фон */
+.button:active {
+  background-color: #545050;
+}
+
+/* Сброс обводки на обычном фокусе */
+.button:focus {
+  outline: none;
+}
+
+/* Состояние focus-visible - обводка */
+.button:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+/* Описание карточки */
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Шаг 6. Состояния карточек */
+
+/* Отступы для элементов списка (чтобы обводка не прилипала) */
+.content__list-item {
+  padding-inline: 3px;
+}
+
+/* Карточка как блочный элемент */
+.content__card-link {
+  display: block;
+  margin: 2px;
+}
+
+/* Текущая (активная) карточка */
+.content__card-link_current {
+  background-color: #545050;
+}
+
+/* Карточка при наведении - подчёркивание */
+.content__card-link:hover {
+  text-decoration: underline;
+}
+
+/* Сброс обводки на обычном фокусе */
+.content__card-link:focus {
+  outline: none;
+}
+
+/* Карточка в фокусе - обводка */
+.content__card-link:focus-visible {
+  outline: 1px solid #fff;
+}
+
+/* Активное состояние карточки */
+.content__card-link:active {
+  background-color: #545050;
+}
+
+/* Внутреннее содержимое карточки */
+.content__video-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+/* Описание карточки */
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Шаг 7. Работаем с кликабельностью */
+
+/* Курсор-указатель на кликабельных элементах */
+.content__card-link {
+  cursor: pointer;
+}
+
+.search-form__label {
+  cursor: pointer;
+}
+
+/* Описание карточки */
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Шаг 8. Позиционирование прелоадеров */
+
+/* Относительное позиционирование для контейнеров с прелоадерами */
+.result__video-container {
+  position: relative;
+}
+
+.content__list-container {
+  position: relative;
+}
+
+/* Описание карточки */
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
